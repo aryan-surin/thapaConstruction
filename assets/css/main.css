@@ -1,0 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply scroll-smooth;
+  }
+  
+  body {
+    @apply font-sans bg-white text-primary;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading font-semibold;
+  }
+}
+
+@layer components {
+  .container-custom {
+    @apply container mx-auto px-4 md:px-6 lg:px-8;
+  }
+  
+  .btn {
+    @apply px-6 py-3 rounded-md font-semibold transition-all duration-300 inline-flex items-center justify-center;
+  }
+  
+  .btn-primary {
+    @apply btn bg-accent text-primary hover:bg-primary hover:text-accent;
+  }
+  
+  .btn-outline {
+    @apply btn border-2 border-primary text-primary hover:bg-primary hover:text-white;
+  }
+  
+  .section-title {
+    @apply text-3xl md:text-4xl font-bold mb-4 relative;
+  }
+  
+  .section-title::after {
+    @apply content-[''] block w-16 h-1 bg-accent mt-2;
+  }
+  
+  .form-input {
+    @apply w-full rounded-md border-neutral/20 focus:border-steel-blue focus:ring focus:ring-steel-blue/20 transition duration-300;
+  }
+
+  .nav-link {
+    @apply text-neutral hover:text-accent transition-colors duration-300;
+  }
+
+  .nav-link.active {
+    @apply text-accent font-medium;
+  }
+}
