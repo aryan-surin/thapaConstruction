@@ -2,8 +2,9 @@
   <header class="fixed top-0 w-full z-50 bg-white shadow-md transition-all duration-300" :class="{'py-1': scrolled, 'py-3': !scrolled}">
     <div class="container-custom flex justify-between items-center">
       <!-- Logo -->
-      <NuxtLink to="/" class="flex items-center">
+      <NuxtLink to="/" class="flex items-center space-x-4">
         <img src="/images/logo.jpg" alt="Thapa Construction" class="h-12 md:h-16 w-auto transition-all duration-300" :class="{'h-10 md:h-12': scrolled}">
+        <span class="hidden md:block text-xl font-bold text-primary">Thapa <span class="text-accent">Construction</span></span>
       </NuxtLink>
 
       <!-- Desktop Navigation -->
