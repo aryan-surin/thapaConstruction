@@ -6,7 +6,7 @@
         <div>
           <img src="/images/logo.jpg" alt="Thapa Construction" class="h-16 w-auto mb-4 bg-white p-2 rounded">
           <p class="text-secondary/80 mt-4">
-            Premier construction services in Darjeeling, West Bengal. Building dreams with quality and reliability since 2005.
+            Premier construction services in Darjeeling, West Bengal. Building dreams with quality and reliability since 2024.
           </p>
           <div class="flex space-x-4 mt-6">
             <a href="#" class="text-white hover:text-accent transition-colors duration-300" aria-label="Facebook">

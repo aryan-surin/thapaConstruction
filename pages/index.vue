@@ -20,7 +20,7 @@
             <img src="/images/about-home.jpg" alt="About Thapa Construction" class="rounded-lg shadow-lg w-full h-auto">
           </div>
           <div class="w-full md:w-1/2">
-            <h2 class="section-title">Excellence in Construction Since 2005</h2>
+            <h2 class="section-title">Excellence in Construction Since 2024</h2>
             <p class="text-neutral mb-6">
               Thapa Construction has been providing exceptional construction services in Darjeeling and surrounding areas for over 15 years. We specialize in creating spaces that inspire and endure.
             </p>

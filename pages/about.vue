@@ -16,7 +16,7 @@
           <div class="lg:w-1/2">
             <h2 class="section-title">Our Story</h2>
             <p class="text-neutral mb-6">
-              Founded in 2005 in the beautiful hills of Darjeeling, Thapa Construction began as a small family business with a big vision - to transform the local construction landscape with quality craftsmanship and integrity.
+              Founded in 2024 in the beautiful hills of Darjeeling, Thapa Construction began as a small family business with a big vision - to transform the local construction landscape with quality craftsmanship and integrity.
             </p>
             <p class="text-neutral mb-6">
               Over the years, we've grown from a small residential contractor to a full-service construction company handling projects of all sizes across West Bengal. What hasn't changed is our dedication to quality and customer satisfaction.
