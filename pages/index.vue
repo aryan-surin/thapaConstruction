@@ -1,16 +1,7 @@
 <template>
   <div>
     <!-- Hero Section -->
-    <Hero
-      backgroundImage="/images/hero-home.jpg"
-      title="Building Your Vision With Precision and Excellence"
-      subtitle="Thapa Construction"
-      description="We are Darjeeling's premier construction company offering high-quality construction, renovation, and design services for residential and commercial projects."
-      primaryButtonText="Our Services"
-      primaryButtonLink="/services"
-      secondaryButtonText="Contact Us"
-      secondaryButtonLink="/contact"
-    />
+    <SliderHero />
 
     <!-- About Section -->
     <section class="py-20 bg-secondary">
@@ -233,6 +224,8 @@
 </template>
 
 <script setup lang="ts">
+import SliderHero from '~/components/SliderHero.vue';
+
 useHead({
   title: 'Thapa Construction - Premier Construction Services in Darjeeling',
   meta: [
