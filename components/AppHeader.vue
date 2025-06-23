@@ -25,7 +25,7 @@
     </div>
 
     <!-- Mobile Navigation Menu -->
-    <div v-if="isMenuOpen" class="lg:hidden absolute top-full left-0 right-0 bg-white shadow-md border-t border-neutral/10 py-4">
+    <div v-show="isMenuOpen" class="lg:hidden absolute top-full left-0 right-0 bg-white shadow-md border-t border-neutral/10 py-4">
       <div class="container-custom flex flex-col space-y-4">
         <NuxtLink 
           v-for="(item, index) in navItems" 
