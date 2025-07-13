@@ -19,7 +19,7 @@
               Established in 2022 in Siliguri, West Bengal, Thapa Construction began as a specialized subcontracting firm with a clear vision - to transform the regional construction landscape with quality craftsmanship and integrity. In 2024, we proudly evolved into a full-contract construction company, expanding our capabilities and client base.
             </p>
             <p class="text-neutral mb-6">
-              Today, we specialize in comprehensive construction services including general construction for residential and commercial projects, renovation and repair works, architectural design and planning, interior design and roofing, as well as specialized services like flooring, tiling, and painting. Our project management expertise and reliable labor supply ensure excellence at every stage.
+              Today, we specialize in comprehensive construction services including general construction for residential and commercial projects, renovation and repair works, architectural design and planning, interior design and roofing, as well as specialized services like flooring, tiling, and painting.
             </p>
             <p class="text-neutral">
               Under the leadership of our founder Mr. Prakash Thapa, we remain committed to our mission: "To build spaces that inspire, last, and deliver more than expected." With a passionate team focused on quality, safety, and client satisfaction, we continue to build not just structures, but lasting relationships based on trust and exceptional results.

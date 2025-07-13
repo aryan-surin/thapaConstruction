@@ -30,8 +30,8 @@ export const services: ServiceData[] = [
     title: 'General Construction',
     description: 'Full-service construction solutions for residential and commercial projects, built to the highest standards.',
     longDescription: `Our general construction services cover all aspects of building projects from foundation to finishing touches. With expertise in diverse construction methods and materials, we deliver structures that are both aesthetically pleasing and structurally sound.`,
-    image: '/images/services/general-construction.jpg',
-    detailedImage: '/images/services/general-construction-detail.jpg',
+    image: '/images/services/general-construction.png',
+    detailedImage: '/images/services/general-construction.png',
     icon: 'heroicons:building-office-2',
     imageRight: false,
     features: [
@@ -49,7 +49,7 @@ export const services: ServiceData[] = [
     description: 'Custom home building and commercial construction services tailored to meet your specific needs and vision.',
     longDescription: `Whether you're building a family home or a commercial complex, our team brings the same dedication to quality and attention to detail. We specialize in custom designs that reflect your unique preferences and requirements.`,
     image: '/images/services/residential-commercial.jpg',
-    detailedImage: '/images/services/residential-commercial-detail.jpg',
+    detailedImage: '/images/services/residential-commercial.jpg',
     icon: 'heroicons:home',
     imageRight: true,
     features: [
@@ -66,8 +66,8 @@ export const services: ServiceData[] = [
     title: 'Renovation & Remodeling',
     description: 'Transform your existing space with our comprehensive renovation and remodeling services.',
     longDescription: `Our renovation and remodeling services breathe new life into existing structures. From simple updates to complete transformations, we help you reimagine your space while increasing functionality and value.`,
-    image: '/images/services/renovation.jpg',
-    detailedImage: '/images/services/renovation-detail.jpg',
+    image: '/images/services/renovation-remodeling.jpg',
+    detailedImage: '/images/services/renovation-remodeling.jpg',
     icon: 'heroicons:wrench-screwdriver',
     imageRight: false,
     features: [
@@ -85,7 +85,7 @@ export const services: ServiceData[] = [
     description: 'Expert project management and labor supply to ensure your project runs smoothly from start to finish.',
     longDescription: `Our project management team coordinates all aspects of construction, from planning and scheduling to resource allocation and quality control. We ensure your project stays on track, on budget, and meets all requirements.`,
     image: '/images/services/project-management.jpg',
-    detailedImage: null,
+    detailedImage: '/images/services/project-management.jpg',
     icon: 'heroicons:clipboard-document-check',
     imageRight: true,
     features: [
@@ -102,8 +102,8 @@ export const services: ServiceData[] = [
     title: 'Architectural Design & Planning',
     description: 'Creative and functional architectural solutions that bring your vision to life with precision.',
     longDescription: `Our architectural design and planning services combine creativity with technical expertise to create spaces that are both beautiful and functional. We work closely with you to understand your needs and translate them into detailed plans.`,
-    image: '/images/services/architectural-design.jpg',
-    detailedImage: null,
+    image: '/images/services/architectural-planning.jpg',
+    detailedImage: '/images/services/architectural-planning.jpg',
     icon: 'heroicons:document',
     imageRight: false,
     features: [
@@ -121,7 +121,7 @@ export const services: ServiceData[] = [
     description: 'Enhance your space with our expert interior design services and durable, stylish roofing solutions.',
     longDescription: `Our interior design services create spaces that reflect your personal style and meet your practical needs. We also provide high-quality roofing solutions that protect your investment with durability and aesthetic appeal.`,
     image: '/images/services/interior-roofing.jpg',
-    detailedImage: null,
+    detailedImage: '/images/services/interior-roofing.jpg',
     icon: 'heroicons:home-modern',
     imageRight: true,
     features: [
@@ -138,8 +138,8 @@ export const services: ServiceData[] = [
     title: 'Flooring, Tiling & Painting',
     description: 'Complete finishing services including expert flooring installation, precision tiling, and quality painting.',
     longDescription: `Our finishing services add the final touch to your space, with expert installation of flooring and tiles, as well as professional painting for both interior and exterior surfaces. We use quality materials and proven techniques for results that last.`,
-    image: '/images/services/flooring-painting.jpg',
-    detailedImage: null,
+    image: '/images/services/flooring-tiling-painting.jpg',
+    detailedImage: '/images/services/flooring-tiling-painting.jpg',
     icon: 'heroicons:paint-brush',
     imageRight: false,
     features: [
