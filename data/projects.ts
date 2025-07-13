@@ -9,8 +9,8 @@ export const projects = [
     "description": "Precision interior wall putty and paint preparation work for a new residential project.",
     "category": "Renovation & Remodeling",
     "location": "Salbari, Ayushman Residency",
-    "image": "/images/projects/interior-wall-finishing.jpg",
-    "fullImage": "/images/projects/interior-wall-finishing.jpg",
+    "image": "/images/projects/interior-wall-finishing/img1.jpg",
+    "fullImage": "/images/projects/interior-wall-finishing/img1.jpg",
     "featured": false,
     "details": {
       "Completion": "June 2025",
@@ -20,9 +20,9 @@ export const projects = [
       "Special Features": "Smooth wall putty, stain-resistant paint"
     },
     gallery: [
-      '/images/projects/interior-wall-finishing.jpg',
-      '/images/placeholders/gallery-1.jpg',
-      '/images/placeholders/gallery-2.jpg'
+      '/images/projects/interior-wall-finishing/img1.jpg',
+      '/images/projects/interior-wall-finishing/img2.jpg',
+      '/images/projects/interior-wall-finishing/img3.jpg'
     ],
   },
   {
@@ -31,8 +31,8 @@ export const projects = [
     "description": "Custom carpentry work in progress for structural wood panels and frames.",
     "category": "General Construction",
     "location": "Goshupur, Sawa Kendra",
-    "image": "/images/projects/outdoor-woodwork-and-carpentry.jpg",
-    "fullImage": "/images/projects/outdoor-woodwork-and-carpentry.jpg",
+    "image": "/images/projects/outdoor-woodwork-and-carpentry/img1.jpg",
+    "fullImage": "/images/projects/outdoor-woodwork-and-carpentry/img1.jpg",
     "featured": false,
     "details": {
       "Completion": "May 2025",
@@ -42,9 +42,11 @@ export const projects = [
       "Special Features": "Machine-finished panels, outdoor durability"
     },
     gallery: [
-      '/images/projects/interior-wall-finishing.jpg',
-      '/images/placeholders/gallery-1.jpg',
-      '/images/placeholders/gallery-2.jpg'
+      '/images/projects/outdoor-woodwork-and-carpentry/img1.jpg',
+      '/images/projects/outdoor-woodwork-and-carpentry/img2.jpg',
+      '/images/projects/outdoor-woodwork-and-carpentry/img3.jpg',
+      '/images/projects/outdoor-woodwork-and-carpentry/img4.jpg',
+      '/images/projects/outdoor-woodwork-and-carpentry/img5.jpg'
     ],
   },
   {
@@ -53,8 +55,8 @@ export const projects = [
     "description": "Contemporary U-shaped kitchen design with glossy finishes and marble-pattern backsplash.",
     "category": "Residential & Commercial Construction",
     "location": "Kurseong, maharani (Tung)",
-    "image": "/images/projects/premium-modular-kitchen-installation.jpg",
-    "fullImage": "/images/projects/premium-modular-kitchen-installation.jpg",
+    "image": "/images/projects/premium-modular-kitchen-installation/img1.jpg",
+    "fullImage": "/images/projects/premium-modular-kitchen-installation/img1.jpg",
     "featured": false,
     "details": {
       "Completion": "April 2025",
@@ -64,9 +66,10 @@ export const projects = [
       "Special Features": "Curved island counter, high-gloss modular finish"
     },
     gallery: [
-      '/images/projects/interior-wall-finishing.jpg',
-      '/images/placeholders/gallery-1.jpg',
-      '/images/placeholders/gallery-2.jpg'
+      '/images/projects/premium-modular-kitchen-installation/img1.jpg',
+      '/images/projects/premium-modular-kitchen-installation/img2.jpg',
+      '/images/projects/premium-modular-kitchen-installation/img3.jpg',
+      '/images/projects/premium-modular-kitchen-installation/img4.jpg'
     ],
   },
   {
@@ -75,8 +78,8 @@ export const projects = [
     "description": "Efficient and colorful modular kitchen setup for a compact urban home.",
     "category": "Residential & Commercial Construction",
     "location": "Salbari, Ayushman Residency",
-    "image": "/images/projects/compact-urban-kitchen-setup.jpg",
-    "fullImage": "/images/projects/compact-urban-kitchen-setup.jpg",
+    "image": "/images/projects/compact-urban-kitchen-setup/img1.jpg",
+    "fullImage": "/images/projects/compact-urban-kitchen-setup/img1.jpg",
     "featured": false,
     "details": {
       "Completion": "March 2025",
@@ -86,9 +89,9 @@ export const projects = [
       "Special Features": "Glossy teal cabinetry, wall-mounted storage"
     },
     gallery: [
-      '/images/projects/interior-wall-finishing.jpg',
-      '/images/placeholders/gallery-1.jpg',
-      '/images/placeholders/gallery-2.jpg'
+      '/images/projects/compact-urban-kitchen-setup/img1.jpg',
+      '/images/projects/compact-urban-kitchen-setup/img2.jpg',
+      '/images/projects/compact-urban-kitchen-setup/img3.jpg'
     ],
   },
 ]
