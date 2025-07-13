@@ -16,13 +16,13 @@
           <div class="lg:w-1/2">
             <h2 class="section-title">Our Story</h2>
             <p class="text-neutral mb-6">
-              Founded in 2024 in the beautiful hills of Darjeeling, Thapa Construction began as a small family business with a big vision - to transform the local construction landscape with quality craftsmanship and integrity.
+              Established in 2022 in Siliguri, West Bengal, Thapa Construction began as a specialized subcontracting firm with a clear vision - to transform the regional construction landscape with quality craftsmanship and integrity. In 2024, we proudly evolved into a full-contract construction company, expanding our capabilities and client base.
             </p>
             <p class="text-neutral mb-6">
-              Over the years, we've grown from a small residential contractor to a full-service construction company handling projects of all sizes across West Bengal. What hasn't changed is our dedication to quality and customer satisfaction.
+              Today, we specialize in comprehensive construction services including general construction for residential and commercial projects, renovation and repair works, architectural design and planning, interior design and roofing, as well as specialized services like flooring, tiling, and painting. Our project management expertise and reliable labor supply ensure excellence at every stage.
             </p>
             <p class="text-neutral">
-              Today, under the leadership of our founder Mr. Prakash Thapa, we continue to build not just structures, but lasting relationships with our clients, based on trust, reliability, and exceptional results.
+              Under the leadership of our founder Mr. Prakash Thapa, we remain committed to our mission: "To build spaces that inspire, last, and deliver more than expected." With a passionate team focused on quality, safety, and client satisfaction, we continue to build not just structures, but lasting relationships based on trust and exceptional results.
             </p>
           </div>
           <div class="lg:w-1/2">
@@ -121,8 +121,8 @@
       </div>
     </section>
 
-    <!-- Meet the Team -->
-    <section class="py-20 bg-secondary">
+    <!-- TODO: will active this section later Meet the Team -->
+    <!-- <section class="py-20 bg-secondary">
       <div class="container-custom">
         <div class="text-center max-w-3xl mx-auto mb-16">
           <h2 class="section-title mx-auto after:mx-auto">Meet Our Leadership</h2>
@@ -208,7 +208,7 @@
           </div>
         </div>
       </div>
-    </section>
+    </section> -->
 
     <!-- Why Choose Us -->
     <section class="py-20">
