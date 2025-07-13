@@ -30,8 +30,8 @@ export const services: ServiceData[] = [
     title: 'General Construction',
     description: 'Full-service construction solutions for residential and commercial projects, built to the highest standards.',
     longDescription: `Our general construction services cover all aspects of building projects from foundation to finishing touches. With expertise in diverse construction methods and materials, we deliver structures that are both aesthetically pleasing and structurally sound.`,
-    image: '/images/services/general-construction.png',
-    detailedImage: '/images/services/general-construction.png',
+    image: '/images/services/general-construction.jpg',
+    detailedImage: '/images/services/general-construction.jpg',
     icon: 'heroicons:building-office-2',
     imageRight: false,
     features: [

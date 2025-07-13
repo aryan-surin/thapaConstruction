@@ -255,7 +255,7 @@ const services = [
   {
     title: 'Renovation & Remodeling',
     description: 'Transform your existing space with our comprehensive renovation and remodeling services.',
-    image: '/images/services/renovation.jpg',
+    image: '/images/services/renovation-remodeling.jpg',
     icon: 'heroicons:wrench-screwdriver',
     link: '/services#renovation'
   }
