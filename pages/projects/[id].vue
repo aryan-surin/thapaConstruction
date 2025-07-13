@@ -124,63 +124,46 @@
 </template>
 
 <script setup lang="ts">
-// Get the route parameter (project ID)
-const route = useRoute();
-const id = route.params.id as string;
+  import { computed } from 'vue'
+  import { useRoute } from 'vue-router'
+  import { useProjectsStore } from '~/stores/projects'
 
-// SEO
-useHead({
-  title: 'Project Details - Thapa Construction',
-  meta: [
-    { 
-      name: 'description', 
-      content: 'View detailed information about our construction project including features, specifications, and gallery.'
-    }
-  ]
-});
+  /**
+   * Individual Project Page Logic
+   * - Fetches the project by ID from the Pinia store.
+   * - Handles not-found and loading states.
+   * - Optimized for maintainability and scalability.
+   */
 
-// In a real app, this data would come from an API or CMS
-// For now, we'll use the same project data from the projects page
-const projects = ref([
-  {
-    id: 'himalayan-heights',
-    title: 'Himalayan Heights Residences',
-    description: 'Luxury residential complex with stunning mountain views and modern amenities.',
-    category: 'Residential',
-    location: 'Darjeeling',
-    image: '/images/projects/residential-1.jpg',
-    fullImage: '/images/projects/residential-1-full.jpg',
-    featured: true,
-    details: {
-      'Completion': 'June 2022',
-      'Area': '15,000 sq ft',
-      'Units': '10 luxury apartments',
-      'Services': 'Design & Construction',
-      'Duration': '18 months',
-      'Special Features': 'Rooftop garden, Mountain views'
-    }
-  },
-  {
-    id: 'tea-estate-office',
-    title: 'Tea Estate Office Complex',
-    description: 'Modern office building for a prominent tea estate featuring sustainable design elements.',
-    category: 'Commercial',
-    location: 'Kurseong',
-    image: '/images/projects/commercial-1.jpg',
-    fullImage: '/images/projects/commercial-1-full.jpg',
-    details: {
-      'Completion': 'March 2023',
-      'Area': '8,000 sq ft',
-      'Services': 'Architecture & Construction',
-      'Duration': '12 months',
-      'Special Features': 'Solar panels, Rainwater harvesting'
-    }
-  },
-  // Add more projects as needed - these would ideally be imported from a data file
-]);
+  // Initialize Pinia store
+  const projectsStore = useProjectsStore()
 
-// Find the project that matches the route ID
-const project = computed(() => {
-  return projects.value.find(p => p.id === id);
-});
+  // Get the route parameter (project ID)
+  const route = useRoute()
+  const id: string = route.params.id as string
+
+  // Find the project that matches the route ID using the store
+  const project = computed(() => projectsStore.allProjects.find(p => p.id === id))
+
+  // Related projects: same category, excluding current project, max 3
+  const relatedProjects = computed(() =>
+    projectsStore.allProjects
+      .filter(p => p.category === project.value?.category && p.id !== id)
+      .slice(0, 3)
+  )
+
+  // SEO: Dynamic title and description
+  useHead(() => ({
+    title: project.value
+      ? `${project.value.title} - Thapa Construction`
+      : 'Project Details - Thapa Construction',
+    meta: [
+      {
+        name: 'description',
+        content:
+          project.value?.description ||
+          'View detailed information about our construction project including features, specifications, and gallery.'
+      }
+    ]
+  }))
 </script>
