@@ -98,7 +98,8 @@
     </section>
 
     <!-- Map Section -->
-    <section class="py-20 bg-secondary">
+    <!-- TODO: will implement Google Maps integration later -->
+    <!-- <section class="py-20 bg-secondary">
       <div class="container-custom">
         <div class="text-center max-w-3xl mx-auto mb-16">
           <h2 class="section-title mx-auto after:mx-auto">Our Location</h2>
@@ -107,7 +108,6 @@
           </p>
         </div>
 
-        <!-- Map Placeholder - In production, replace with actual Google Maps embed -->
         <div class="w-full h-[500px] bg-white rounded-lg shadow-md overflow-hidden">
           <div class="w-full h-full bg-neutral/10 flex items-center justify-center">
             <div class="text-center">
@@ -121,7 +121,7 @@
           </div>
         </div>
       </div>
-    </section>
+    </section> -->
 
     <!-- FAQs Section -->
     <section class="py-20">
