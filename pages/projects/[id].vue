@@ -80,12 +80,11 @@
       </div>
     </section>
 
-    <!-- Related Projects -->
-    <section class="py-20 bg-secondary">
+    <!-- TODO: disable for now Related Projects -->
+    <!-- <section class="py-20 bg-secondary">
       <div class="container mx-auto max-w-7xl px-4">
         <h2 class="text-3xl font-bold text-primary mb-8 text-center">Other Projects</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <!-- This would be populated with actual related projects -->
           <div v-for="i in 3" :key="i" class="h-64 bg-white rounded-lg shadow-md flex items-center justify-center">
             <p class="text-neutral/50">Related Project {{ i }}</p>
           </div>
@@ -97,7 +96,7 @@
           </NuxtLink>
         </div>
       </div>
-    </section>
+    </section> -->
 
     <!-- CTA Section -->
     <section class="py-20 bg-primary text-white relative overflow-hidden">
