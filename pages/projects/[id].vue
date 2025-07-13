@@ -36,18 +36,26 @@
             <!-- Project Gallery (Placeholders) -->
             <h3 class="text-2xl font-bold text-primary mb-6">Project Gallery</h3>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
-              <!-- Gallery placeholders -->
-              <div v-for="i in 4" :key="i" class="aspect-video bg-neutral/10 rounded-lg flex items-center justify-center">
-                <div class="text-center">
-                  <Icon name="heroicons:photo" class="w-16 h-16 text-neutral/30 mx-auto mb-2" />
-                  <p class="text-neutral/50">Project Photo {{ i }}</p>
+              <template v-if="project.gallery && project.gallery.length">
+                <div
+                  v-for="(img, idx) in project.gallery"
+                  :key="img"
+                  class="aspect-video bg-neutral/10 rounded-lg flex items-center justify-center overflow-hidden"
+                >
+                  <img
+                    :src="img"
+                    :alt="`Project Photo ${idx + 1}`"
+                    class="object-cover w-full h-full"
+                    loading="lazy"
+                    @error="e => { e.target.src = '/images/placeholders/gallery-placeholder.jpg' }"
+                  />
                 </div>
-              </div>
+              </template>
             </div>
           </div>
 
-          <!-- Right Column - Project Details -->
-          <div class="lg:w-1/3">
+          <!-- TODO: uncomment for now Right Column - Project Details -->
+          <!-- <div class="lg:w-1/3">
             <div class="bg-secondary p-8 rounded-lg shadow-md">
               <h3 class="text-xl font-bold text-primary mb-6">Project Details</h3>
               
@@ -59,7 +67,6 @@
                   </div>
                 </div>
 
-                <!-- Location info -->
                 <div class="border-b border-neutral/10 pb-3">
                   <div class="flex justify-between">
                     <span class="font-medium text-primary">Location</span>
@@ -68,14 +75,13 @@
                 </div>
               </div>
               
-              <!-- CTA Button -->
               <div class="mt-8">
                 <NuxtLink to="/contact" class="btn-primary w-full text-center">
                   Discuss a Similar Project
                 </NuxtLink>
               </div>
             </div>
-          </div>
+          </div> -->
         </div>
       </div>
     </section>

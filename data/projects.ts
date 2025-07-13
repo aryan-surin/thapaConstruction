@@ -18,7 +18,12 @@ export const projects = [
       "Services": "Wall preparation & painting",
       "Duration": "2 weeks",
       "Special Features": "Smooth wall putty, stain-resistant paint"
-    }
+    },
+    gallery: [
+      '/images/projects/interior-wall-finishing.jpg',
+      '/images/placeholders/gallery-1.jpg',
+      '/images/placeholders/gallery-2.jpg'
+    ],
   },
   {
     "id": "outdoor-woodwork-and-carpentry",
@@ -35,7 +40,12 @@ export const projects = [
       "Services": "Custom wood fabrication",
       "Duration": "3 weeks",
       "Special Features": "Machine-finished panels, outdoor durability"
-    }
+    },
+    gallery: [
+      '/images/projects/interior-wall-finishing.jpg',
+      '/images/placeholders/gallery-1.jpg',
+      '/images/placeholders/gallery-2.jpg'
+    ],
   },
   {
     "id": "premium-modular-kitchen-installation",
@@ -52,7 +62,12 @@ export const projects = [
       "Services": "Kitchen fabrication & installation",
       "Duration": "4 weeks",
       "Special Features": "Curved island counter, high-gloss modular finish"
-    }
+    },
+    gallery: [
+      '/images/projects/interior-wall-finishing.jpg',
+      '/images/placeholders/gallery-1.jpg',
+      '/images/placeholders/gallery-2.jpg'
+    ],
   },
   {
     "id": "compact-urban-kitchen-setup",
@@ -69,7 +84,12 @@ export const projects = [
       "Services": "Custom kitchen cabinet setup",
       "Duration": "3 weeks",
       "Special Features": "Glossy teal cabinetry, wall-mounted storage"
-    }
+    },
+    gallery: [
+      '/images/projects/interior-wall-finishing.jpg',
+      '/images/placeholders/gallery-1.jpg',
+      '/images/placeholders/gallery-2.jpg'
+    ],
   },
 ]
 
