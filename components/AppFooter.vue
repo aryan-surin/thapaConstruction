@@ -6,7 +6,7 @@
         <div>
           <img src="/images/logo.jpg" alt="Thapa Construction" class="h-16 w-auto mb-4 bg-white p-2 rounded">
           <p class="text-secondary/80 mt-4">
-            Premier construction services in Darjeeling, West Bengal. Building dreams with quality and reliability since 2024.
+            Premier construction services in Dagapur Siliguri, West Bengal. Building dreams with quality and reliability since 2024.
           </p>
           <div class="flex space-x-4 mt-6">
             <a href="#" class="text-white hover:text-accent transition-colors duration-300" aria-label="Facebook">
@@ -54,11 +54,11 @@
           <ul class="space-y-4">
             <li class="flex items-start space-x-3">
               <Icon name="heroicons:map-pin" class="w-6 h-6 text-accent flex-shrink-0 mt-1" />
-              <span class="text-secondary/80">Dist-Darjeeling, West Bengal, India</span>
+              <span class="text-secondary/80">Dagapur Siliguri, Dist-Darjeeling, West Bengal, India</span>
             </li>
             <li class="flex items-center space-x-3">
               <Icon name="heroicons:phone" class="w-6 h-6 text-accent flex-shrink-0" />
-              <span class="text-secondary/80">+91 98XXXXXXXX</span>
+              <span class="text-secondary/80">+91 99072 00490</span>
             </li>
             <li class="flex items-center space-x-3">
               <Icon name="heroicons:envelope" class="w-6 h-6 text-accent flex-shrink-0" />
