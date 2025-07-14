@@ -10,31 +10,143 @@
     />
 
     <!-- Company Story -->
-    <section class="py-20">
-      <div class="container-custom">
-        <div class="flex flex-col lg:flex-row gap-12 items-center">
-          <div class="lg:w-1/2">
-            <h2 class="section-title">Our Story</h2>
-            <p class="text-neutral mb-6">
-              Established in 2022 in Siliguri, West Bengal, Thapa Construction began as a specialized subcontracting firm with a clear vision - to transform the regional construction landscape with quality craftsmanship and integrity. In 2024, we proudly evolved into a full-contract construction company, expanding our capabilities and client base.
-            </p>
-            <p class="text-neutral mb-6">
-              Today, we specialize in comprehensive construction services including general construction for residential and commercial projects, renovation and repair works, architectural design and planning, interior design and roofing, as well as specialized services like flooring, tiling, and painting.
-            </p>
-            <p class="text-neutral">
-              Under the leadership of our founder Mr. Prakash Thapa, we remain committed to our mission: "To build spaces that inspire, last, and deliver more than expected." With a passionate team focused on quality, safety, and client satisfaction, we continue to build not just structures, but lasting relationships based on trust and exceptional results.
-            </p>
-          </div>
-          <div class="lg:w-1/2">
-            <img 
-              src="/images/about-story.jpg" 
-              alt="Thapa Construction History" 
-              class="rounded-lg shadow-lg w-full h-auto"
-            />
-          </div>
+ <div class="container-custom">
+  <!-- Company Story Section with enhanced visual hierarchy -->
+  <div class="flex flex-col lg:flex-row gap-12 items-center">
+    <div class="lg:w-1/2">
+      <!-- Tagline with visual emphasis -->
+      <h2 class="section-title mb-3">Our Story</h2>
+      <div class="inline-block px-4 py-2 bg-accent/10 rounded-full mb-6">
+        <p class="text-accent font-medium flex items-center">
+          <Icon name="heroicons:sparkles" class="w-5 h-5 mr-2" />
+          Building Your Dreams into a Reality
+        </p>
+      </div>
+      
+      <!-- Company history with improved typography and spacing -->
+      <p class="text-neutral mb-6">
+        Thapa Construction is a full-service construction and design company based in Siliguri, West Bengal, offering end-to-end solutions for residential, commercial, and interior projects.
+      </p>
+      
+      <p class="text-neutral mb-6">
+        Founded in 2022 as a subcontracting firm, and officially established as a full-contract construction company in 2024, we have consistently delivered reliable, high-quality, and value-driven construction services across North Bengal. Our growth has been built on strong foundations of trust, transparency, and technical excellence.
+      </p>
+
+      <!-- Leadership with visual separator -->
+      <div class="border-l-4 border-accent pl-4 mb-6">
+        <h3 class="text-xl font-bold text-primary mb-2">Leadership & Vision</h3>
+        <p class="text-neutral">
+          Under the leadership of Mr. Shahil Thapa, our company operates with a clear vision — to deliver construction services that reflect integrity, innovation, and a commitment to excellence. Every project is handled with utmost professionalism and attention to detail, ensuring timely delivery and complete client satisfaction.
+        </p>
+      </div>
+
+      <!-- Regional presence with map icon -->
+      <div class="flex items-start">
+        <div class="bg-primary/10 p-2 rounded-lg mr-3 mt-1">
+          <Icon name="heroicons:map-pin" class="w-5 h-5 text-accent" />
+        </div>
+        <p class="text-neutral">
+          Strategically located in Siliguri, West Bengal, we serve clients across the region — from small residential works to large-scale commercial developments. Whether you're building a home, a workspace, or planning an interior renovation, we're here to help bring your vision to life.
+        </p>
+      </div>
+    </div>
+    
+    <!-- Image section with optional enhancements -->
+    <div class="lg:w-1/2 relative">
+      <img 
+        src="/images/about-story.jpg" 
+        alt="Thapa Construction - Building Your Dreams into Reality" 
+        class="rounded-lg shadow-lg w-full h-auto"
+        loading="lazy"
+      />
+      <!-- Decorative element -->
+      <div class="absolute -bottom-4 -left-4 w-24 h-24 border-8 border-accent/30 rounded-lg hidden lg:block"></div>
+    </div>
+  </div>
+
+  <!-- Services grid with icons - New addition -->
+  <div class="mt-16">
+    <h3 class="text-2xl font-bold text-primary mb-8">Services We Provide</h3>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- Service 1 -->
+      <div class="bg-secondary p-6 rounded-lg flex items-start hover:shadow-md transition-shadow">
+        <div class="bg-accent/10 p-3 rounded-full mr-4">
+          <Icon name="heroicons:building-office-2" class="w-6 h-6 text-accent" />
+        </div>
+        <div>
+          <h4 class="font-bold text-primary mb-1">Residential & Commercial Construction</h4>
+          <p class="text-sm text-neutral">Custom building solutions for homes and businesses</p>
         </div>
       </div>
-    </section>
+
+      <!-- Service 2 -->
+      <div class="bg-secondary p-6 rounded-lg flex items-start hover:shadow-md transition-shadow">
+        <div class="bg-accent/10 p-3 rounded-full mr-4">
+          <Icon name="heroicons:wrench-screwdriver" class="w-6 h-6 text-accent" />
+        </div>
+        <div>
+          <h4 class="font-bold text-primary mb-1">Renovation & Structural Repair</h4>
+          <p class="text-sm text-neutral">Revitalize and strengthen existing structures</p>
+        </div>
+      </div>
+
+      <!-- Service 3 -->
+      <div class="bg-secondary p-6 rounded-lg flex items-start hover:shadow-md transition-shadow">
+        <div class="bg-accent/10 p-3 rounded-full mr-4">
+          <Icon name="heroicons:cube" class="w-6 h-6 text-accent" />
+        </div>
+        <div>
+          <h4 class="font-bold text-primary mb-1">Interior Design & Planning</h4>
+          <p class="text-sm text-neutral">Transform spaces with expert design solutions</p>
+        </div>
+      </div>
+
+      <!-- Service 4 -->
+      <div class="bg-secondary p-6 rounded-lg flex items-start hover:shadow-md transition-shadow">
+        <div class="bg-accent/10 p-3 rounded-full mr-4">
+          <Icon name="heroicons:home" class="w-6 h-6 text-accent" />
+        </div>
+        <div>
+          <h4 class="font-bold text-primary mb-1">Roofing Solutions</h4>
+          <p class="text-sm text-neutral">Durable and aesthetic roofing for all structures</p>
+        </div>
+      </div>
+
+      <!-- Service 5 -->
+      <div class="bg-secondary p-6 rounded-lg flex items-start hover:shadow-md transition-shadow">
+        <div class="bg-accent/10 p-3 rounded-full mr-4">
+          <Icon name="heroicons:wrench" class="w-6 h-6 text-accent" />
+        </div>
+        <div>
+          <h4 class="font-bold text-primary mb-1">Grill Fabrication & Metal Works</h4>
+          <p class="text-sm text-neutral">Custom metal solutions for security and aesthetics</p>
+        </div>
+      </div>
+
+      <!-- Service 6 -->
+      <div class="bg-secondary p-6 rounded-lg flex items-start hover:shadow-md transition-shadow">
+        <div class="bg-accent/10 p-3 rounded-full mr-4">
+          <Icon name="heroicons:paint-brush" class="w-6 h-6 text-accent" />
+        </div>
+        <div>
+          <h4 class="font-bold text-primary mb-1">Flooring, Tiling & Painting</h4>
+          <p class="text-sm text-neutral">Professional finishing touches for any space</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Team highlight - brief mention -->
+  <div class="mt-12 bg-primary/5 p-6 rounded-lg">
+    <div class="flex items-center mb-4">
+      <Icon name="heroicons:user-group" class="w-6 h-6 text-accent mr-3" />
+      <h3 class="text-xl font-bold text-primary">Our Expert Team</h3>
+    </div>
+    <p class="text-neutral">
+      With a strong team of engineers, skilled professionals, and creative designers, we ensure precision, durability, and aesthetic value in every project. Our collaborative approach brings together diverse expertise to deliver exceptional results.
+    </p>
+  </div>
+</div>
 
     <!-- Vision & Mission -->
     <section class="py-20 bg-secondary">
