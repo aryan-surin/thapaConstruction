@@ -55,7 +55,27 @@
                   <!-- <p class="text-neutral">support@thapaconstruction.com</p> -->
                 </div>
               </div>
-              
+              <div class="flex items-start mt-2">
+                <a
+                  href="https://wa.me/919907200490"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Chat with us on WhatsApp"
+                  class="flex items-start group"
+                  @click="handleWhatsAppClick"
+                >
+                  <div class="bg-primary/10 p-3 rounded-lg mr-4">
+                    <Icon name="mdi:whatsapp" class="w-6 h-6 text-accent" />
+                  </div>
+                  <div>
+                    <h4 class="font-bold text-primary mb-1">WhatsApp</h4>
+                    <p class="text-neutral hover:underline group-hover:text-green-700 transition-colors duration-200">
+                      Chat with us on WhatsApp
+                    </p>
+                    <p class="text-xs text-neutral/60">+91 99072 00490</p>
+                  </div>
+                </a>
+              </div>
               <div class="flex items-start">
                 <div class="bg-primary/10 p-3 rounded-lg mr-4">
                   <Icon name="heroicons:clock" class="w-6 h-6 text-accent" />
@@ -194,7 +214,11 @@ useHead({
     }
   ]
 });
-
+const handleWhatsAppClick = (): void => {
+  // Logging for debugging/monitoring
+  // eslint-disable-next-line no-console
+  console.log('WhatsApp chat link clicked');
+};
 /**
  * Frequently Asked Questions data
  */
