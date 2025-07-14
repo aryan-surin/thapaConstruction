@@ -124,8 +124,8 @@
       </div>
     </section>
 
-    <!-- Client Logos -->
-    <section class="py-20">
+    <!-- TODO: Client Logos -->
+    <!-- <section class="py-20">
       <div class="container-custom">
         <div class="text-center max-w-3xl mx-auto mb-16">
           <h2 class="section-title mx-auto after:mx-auto">Our Clients</h2>
@@ -140,7 +140,7 @@
           </div>
         </div>
       </div>
-    </section>
+    </section> -->
 
     <!-- CTA -->
     <section class="py-20 bg-primary text-white relative overflow-hidden">

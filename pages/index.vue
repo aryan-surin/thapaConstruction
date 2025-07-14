@@ -195,7 +195,7 @@
                 </div>
                 <div>
                   <h4 class="font-bold text-primary">Email Us</h4>
-                  <p class="text-neutral">info@thapaconstruction.com</p>
+                  <p class="text-neutral">thapaconstruction2024@gmail.com</p>
                 </div>
               </div>
 

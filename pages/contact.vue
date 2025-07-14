@@ -28,7 +28,8 @@
                 </div>
                 <div>
                   <h4 class="font-bold text-primary mb-1">Our Office</h4>
-                  <p class="text-neutral">123 Mountain View Road,</p>
+                  <p class="text-neutral">Panchanadi, Dagapur, Darjeeling</p>
+                  <p class="text-neutral">P.O. Pradhan Nagar(734003)</p>
                   <p class="text-neutral">Dist-Darjeeling, West Bengal, India</p>
                 </div>
               </div>
@@ -39,8 +40,8 @@
                 </div>
                 <div>
                   <h4 class="font-bold text-primary mb-1">Phone</h4>
-                  <p class="text-neutral">+91 98XXXXXXXX (Main Office)</p>
-                  <p class="text-neutral">+91 97XXXXXXXX (Customer Support)</p>
+                  <p class="text-neutral">+91 99072 00490</p>
+                  <!-- <p class="text-neutral">+91 97XXXXXXXX (Customer Support)</p> -->
                 </div>
               </div>
               
@@ -50,8 +51,8 @@
                 </div>
                 <div>
                   <h4 class="font-bold text-primary mb-1">Email</h4>
-                  <p class="text-neutral">info@thapaconstruction.com</p>
-                  <p class="text-neutral">support@thapaconstruction.com</p>
+                  <p class="text-neutral">thapaconstruction2024@gmail.com</p>
+                  <!-- <p class="text-neutral">support@thapaconstruction.com</p> -->
                 </div>
               </div>
               
@@ -170,7 +171,7 @@
             <Icon name="heroicons:phone" class="w-5 h-5 mr-2" />
             Call Us Now
           </a>
-          <a href="mailto:info@thapaconstruction.com" class="btn border-2 border-white text-white hover:bg-white hover:text-primary transition-all duration-300">
+          <a href="mailto:thapaconstruction2024@gmail.com" class="btn border-2 border-white text-white hover:bg-white hover:text-primary transition-all duration-300">
             <Icon name="heroicons:envelope" class="w-5 h-5 mr-2" />
             Email Us
           </a>

@@ -62,7 +62,7 @@
             </li>
             <li class="flex items-center space-x-3">
               <Icon name="heroicons:envelope" class="w-6 h-6 text-accent flex-shrink-0" />
-              <span class="text-secondary/80">info@thapaconstruction.com</span>
+              <span class="text-secondary/80">thapaconstruction2024@gmail.com</span>
             </li>
             <li class="flex items-center space-x-3">
               <Icon name="heroicons:clock" class="w-6 h-6 text-accent flex-shrink-0" />
