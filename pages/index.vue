@@ -103,7 +103,7 @@
     </section>
 
     <!-- Featured Projects -->
-    <section class="py-20">
+    <section v-if="featuredProjects.length" class="py-20">
       <div class="container-custom">
         <div class="text-center max-w-3xl mx-auto mb-16">
           <h2 class="section-title mx-auto after:mx-auto">Our Featured Projects</h2>
@@ -224,17 +224,54 @@
 </template>
 
 <script setup lang="ts">
-import SliderHero from '~/components/SliderHero.vue';
+import SliderHero from '~/components/SliderHero.vue'
+import ContactForm from '~/components/ContactForm.vue'
+import { computed } from 'vue'
+import { storeToRefs } from 'pinia'
+import { useProjectsStore } from '~/stores/projects'
 
 useHead({
   title: 'Thapa Construction - Premier Construction Services in Darjeeling',
   meta: [
-    { 
-      name: 'description', 
-      content: 'Thapa Construction offers professional construction services in Darjeeling, West Bengal including residential, commercial, renovation, and architectural design.' 
+      { 
+        name: 'description', 
+        content: 'Thapa Construction offers professional construction services in Darjeeling, West Bengal including residential, commercial, renovation, and architectural design.' 
+      }
+    ]
+  });
+  const projectsStore = useProjectsStore()
+  const { allProjects } = storeToRefs(projectsStore)
+
+  /**
+   * Maps and sanitizes raw project data to the ProjectCard prop structure.
+   * @param {any[]} rawProjects - Raw projects array from the store.
+   * @returns {Array<{title: string, description: string, category: string, location: string, image: string, link: string}>}
+   */
+  function mapProjectsForCard(rawProjects: any[]): Array<{title: string, description: string, category: string, location: string, image: string, link: string}> {
+    if (!Array.isArray(rawProjects)) {
+      // eslint-disable-next-line no-console
+      console.error('Projects data is not an array')
+      return []
     }
-  ]
-});
+    // Defensive: Only map valid projects, sanitize fields
+    return rawProjects.slice(0, 3).map((project, idx) => ({
+      title: String(project.title ?? `Project ${idx + 1}`),
+      description: String(project.description ?? ''),
+      category: String(project.category ?? ''),
+      location: String(project.location ?? ''),
+      image: String(project.image ?? '/images/projects/default.jpg'),
+      link: project.id ? `/projects/${project.id}` : '#'
+    }))
+  }
+
+  // --- Computed: Only show up to 3 projects, hide section if none ---
+  const featuredProjects = computed(() => mapProjectsForCard(allProjects.value))
+
+  // --- Logging for debugging/monitoring ---
+  if (featuredProjects.value.length === 0) {
+    // eslint-disable-next-line no-console
+    console.warn('No projects available to display in Featured Projects section.')
+  }
 
 // Sample data - would typically come from an API or CMS
 const services = [
@@ -258,33 +295,6 @@ const services = [
     image: '/images/services/renovation-remodeling.jpg',
     icon: 'heroicons:wrench-screwdriver',
     link: '/services#renovation'
-  }
-];
-
-const featuredProjects = [
-  {
-    title: 'Himalayan Heights Residences',
-    description: 'Luxury residential complex with stunning mountain views and modern amenities.',
-    category: 'Residential',
-    location: 'Darjeeling',
-    image: '/images/projects/residential-1.jpg',
-    link: '/projects/himalayan-heights'
-  },
-  {
-    title: 'Tea Estate Office Complex',
-    description: 'Modern office building for a prominent tea estate featuring sustainable design elements.',
-    category: 'Commercial',
-    location: 'Kurseong',
-    image: '/images/projects/commercial-1.jpg',
-    link: '/projects/tea-estate-office'
-  },
-  {
-    title: 'Heritage Villa Restoration',
-    description: 'Complete restoration of a 100-year-old colonial villa preserving historical elements while adding modern amenities.',
-    category: 'Renovation',
-    location: 'Darjeeling',
-    image: '/images/projects/renovation-1.jpg',
-    link: '/projects/heritage-villa'
   }
 ];
 
