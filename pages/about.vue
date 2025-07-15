@@ -424,7 +424,7 @@ useHead({
   meta: [
     { 
       name: 'description', 
-      content: 'Learn about Thapa Construction - a premier construction company in Darjeeling, West Bengal with over 15 years of experience in residential and commercial projects.' 
+      content: 'Learn about Thapa Construction - a premier construction company in Darjeeling, West Bengal, known for its commitment to quality, transparency, and client satisfaction in residential and commercial projects.'
     }
   ]
 });

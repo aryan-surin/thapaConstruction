@@ -13,7 +13,7 @@
           <div class="w-full md:w-1/2">
             <h2 class="section-title">Excellence in Construction Since 2024</h2>
             <p class="text-neutral mb-6">
-              Thapa Construction has been providing exceptional construction services in Darjeeling and surrounding areas for over 15 years. We specialize in creating spaces that inspire and endure.
+              Thapa Construction blends modern techniques with a skilled team to create inspiring spaces in Darjeeling and Jalpiguri districts and beyond. We work closely with our clients to turn their vision into reality, ensuring reliability and excellence at every step.
             </p>
             <p class="text-neutral mb-8">
               With our team of experienced professionals, we deliver high-quality construction services that meet and exceed client expectations. Our commitment to quality, reliability, and client satisfaction is what sets us apart.
