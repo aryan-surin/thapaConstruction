@@ -469,20 +469,16 @@ const handleFullImageUpload = (event: Event) => {
  * Clear main image
  */
 const clearMainImage = () => {
-  if (mainImageFile.value) {
-    mainImageFile.value = null
-    mainImagePreview.value = project.value?.image || ''
-  }
+  mainImageFile.value = null
+  mainImagePreview.value = ''
 }
 
 /**
  * Clear full image
  */
 const clearFullImage = () => {
-  if (fullImageFile.value) {
-    fullImageFile.value = null
-    fullImagePreview.value = project.value?.full_image || project.value?.image || ''
-  }
+  fullImageFile.value = null
+  fullImagePreview.value = ''
 }
 
 /**
@@ -537,10 +533,10 @@ const handleSubmit = async () => {
   successMessage.value = ''
 
   try {
-    let mainImageUrl = project.value.image
-    let fullImageUrl = project.value.full_image
-
-    // Upload new main image if changed
+    // Determine main image URL
+    let mainImageUrl = mainImagePreview.value || project.value.image
+    
+    // Upload new main image if file selected
     if (mainImageFile.value) {
       const mainImageResult = await projectsStore.uploadImage(mainImageFile.value, 'projects')
       if (!mainImageResult.success) {
@@ -549,7 +545,10 @@ const handleSubmit = async () => {
       mainImageUrl = mainImageResult.url
     }
 
-    // Upload new full image if changed
+    // Determine full/hero image URL
+    let fullImageUrl = fullImagePreview.value || project.value.full_image
+    
+    // Upload new full image if file selected
     if (fullImageFile.value) {
       const fullImageResult = await projectsStore.uploadImage(fullImageFile.value, 'projects')
       if (fullImageResult.success) {
