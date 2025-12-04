@@ -129,13 +129,13 @@
 </template>
 
 <script setup lang="ts">
-  import { computed } from 'vue'
+  import { computed, onMounted } from 'vue'
   import { useRoute } from 'vue-router'
   import { useProjectsStore } from '~/stores/projects'
 
   /**
    * Individual Project Page Logic
-   * - Fetches the project by ID from the Pinia store.
+   * - Fetches the project by ID from the Pinia store and Supabase.
    * - Handles not-found and loading states.
    * - Optimized for maintainability and scalability.
    */
@@ -146,6 +146,13 @@
   // Get the route parameter (project ID)
   const route = useRoute()
   const id: string = route.params.id as string
+
+  // Fetch projects from Supabase if not already loaded
+  onMounted(async () => {
+    if (projectsStore.allProjects.length === 0) {
+      await projectsStore.fetchProjects()
+    }
+  })
 
   // Find the project that matches the route ID using the store
   const project = computed(() => projectsStore.allProjects.find(p => p.id === id))

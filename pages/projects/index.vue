@@ -159,11 +159,16 @@
 </template>
 
 <script setup lang="ts">
-  import { ref, computed } from 'vue'
+  import { ref, computed, onMounted } from 'vue'
   import { useProjectsStore } from '~/stores/projects'
 
   // Initialize Pinia store
   const projectsStore = useProjectsStore()
+
+  // Fetch projects from Supabase on component mount
+  onMounted(async () => {
+    await projectsStore.fetchProjects()
+  })
 
   // Active category for filtering
   const activeCategory = ref('all')
