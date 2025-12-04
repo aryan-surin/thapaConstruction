@@ -176,6 +176,42 @@
               </label>
             </div>
           </div>
+
+          <!-- Gallery Images (Multiple) -->
+          <div class="mb-6">
+            <label class="block text-sm font-medium text-gray-700 mb-2">
+              Project Gallery (Max 5 images)
+            </label>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+              <!-- Existing Gallery Images -->
+              <div v-for="(preview, idx) in galleryPreviews" :key="idx" class="relative">
+                <img :src="preview" alt="Gallery" class="w-full h-32 object-cover rounded-lg" />
+                <button
+                  type="button"
+                  @click="removeGalleryImage(idx)"
+                  class="absolute -top-2 -right-2 bg-red-500 text-white rounded-full p-1 hover:bg-red-600"
+                >
+                  <Icon name="heroicons:x-mark" class="w-4 h-4" />
+                </button>
+              </div>
+
+              <!-- Upload Button (Show only if less than 5 images) -->
+              <label v-if="galleryFiles.length < 5" class="cursor-pointer">
+                <div class="flex flex-col items-center justify-center h-32 border-2 border-dashed border-gray-300 rounded-lg hover:border-accent transition-colors">
+                  <Icon name="heroicons:arrow-up-tray" class="w-8 h-8 text-gray-400" />
+                  <p class="text-xs text-gray-500 mt-1">Add Image</p>
+                </div>
+                <input
+                  type="file"
+                  accept="image/*"
+                  multiple
+                  @change="handleGalleryUpload"
+                  class="hidden"
+                />
+              </label>
+            </div>
+            <p class="text-xs text-gray-500 mt-2">{{ galleryFiles.length }}/5 images selected</p>
+          </div>
         </div>
 
         <!-- Project Details (JSON) -->
@@ -317,6 +353,10 @@ const fullImageFile = ref<File | null>(null)
 const mainImagePreview = ref('')
 const fullImagePreview = ref('')
 
+// Gallery images
+const galleryFiles = ref<File[]>([])
+const galleryPreviews = ref<string[]>([])
+
 // UI state
 const submitting = ref(false)
 const errorMessage = ref('')
@@ -365,6 +405,35 @@ const clearFullImage = () => {
 }
 
 /**
+ * Handle gallery images upload
+ */
+const handleGalleryUpload = (event: Event) => {
+  const target = event.target as HTMLInputElement
+  const files = target.files
+  
+  if (files) {
+    const remainingSlots = 5 - galleryFiles.value.length
+    const filesToAdd = Array.from(files).slice(0, remainingSlots)
+    
+    filesToAdd.forEach(file => {
+      galleryFiles.value.push(file)
+      galleryPreviews.value.push(URL.createObjectURL(file))
+    })
+  }
+  
+  // Reset input
+  target.value = ''
+}
+
+/**
+ * Remove gallery image by index
+ */
+const removeGalleryImage = (index: number) => {
+  galleryFiles.value.splice(index, 1)
+  galleryPreviews.value.splice(index, 1)
+}
+
+/**
  * Handle form submission
  */
 const handleSubmit = async () => {
@@ -395,6 +464,15 @@ const handleSubmit = async () => {
       }
     }
 
+    // Upload gallery images
+    const galleryUrls: string[] = []
+    for (const file of galleryFiles.value) {
+      const galleryResult = await projectsStore.uploadImage(file, 'projects/gallery')
+      if (galleryResult.success) {
+        galleryUrls.push(galleryResult.url)
+      }
+    }
+
     // Prepare project data
     const projectData = {
       title: form.value.title,
@@ -405,7 +483,7 @@ const handleSubmit = async () => {
       full_image: fullImageUrl,
       featured: form.value.featured,
       details: form.value.details,
-      gallery: []
+      gallery: galleryUrls
     }
 
     // Create project
