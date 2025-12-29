@@ -52,87 +52,6 @@
       </div>
     </section>
 
-    <!-- Services Section -->
-    <section class="py-20">
-      <div class="container-custom">
-        <div class="text-center max-w-3xl mx-auto mb-16">
-          <h2 class="section-title mx-auto after:mx-auto">Our Services</h2>
-          <p class="text-neutral">
-            We offer a comprehensive range of construction services to meet your needs, from initial design to final construction.
-          </p>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <ServiceCard
-            v-for="(service, index) in services"
-            :key="index"
-            :title="service.title"
-            :description="service.description"
-            :image="service.image"
-            :icon="service.icon"
-            :link="service.link"
-          />
-        </div>
-
-        <div class="text-center mt-12">
-          <NuxtLink to="/services" class="btn-outline">
-            View All Services
-          </NuxtLink>
-        </div>
-      </div>
-    </section>
-
-    <!-- CTA Section -->
-    <section class="py-20 bg-primary text-white relative overflow-hidden">
-      <div class="absolute inset-0 bg-cover bg-center opacity-20" style="background-image: url('/images/cta-bg.jpg')"></div>
-      <div class="container-custom relative z-10">
-        <div class="flex flex-col md:flex-row items-center justify-between gap-8">
-          <div class="md:w-2/3">
-            <h2 class="text-3xl md:text-4xl font-bold mb-4">Ready to Start Your Construction Project?</h2>
-            <p class="text-white/90 text-lg">
-              Contact us today for a free consultation and quote. We're ready to bring your vision to life.
-            </p>
-          </div>
-          <div class="md:w-1/3 flex justify-center md:justify-end">
-            <NuxtLink to="/contact" class="btn bg-accent text-primary hover:bg-white transition-all duration-300">
-              Get Free Quote
-            </NuxtLink>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Featured Projects -->
-    <section v-if="featuredProjects.length" class="py-20">
-      <div class="container-custom">
-        <div class="text-center max-w-3xl mx-auto mb-16">
-          <h2 class="section-title mx-auto after:mx-auto">Our Featured Projects</h2>
-          <p class="text-neutral">
-            Explore some of our recent construction projects showcasing our quality and craftsmanship.
-          </p>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <ProjectCard
-            v-for="(project, index) in featuredProjects"
-            :key="index"
-            :title="project.title"
-            :description="project.description"
-            :category="project.category"
-            :location="project.location"
-            :image="project.image"
-            :link="project.link"
-          />
-        </div>
-
-        <div class="text-center mt-12">
-          <NuxtLink to="/projects" class="btn-outline">
-            View All Projects
-          </NuxtLink>
-        </div>
-      </div>
-    </section>
-
     <!-- Testimonials Section -->
     <section class="py-20 bg-secondary">
       <div class="container-custom">
@@ -158,146 +77,44 @@
         </div>
       </div>
     </section>
-
-    <!-- Contact Section -->
-    <section class="py-20">
-      <div class="container-custom">
-        <div class="flex flex-col lg:flex-row gap-12">
-          <div class="lg:w-1/2">
-            <h2 class="section-title">Get In Touch</h2>
-            <p class="text-neutral mb-8">
-              Have a question or ready to start your next construction project? Contact us today and our team will get back to you as soon as possible.
-            </p>
-            <div class="space-y-6">
-              <div class="flex items-center">
-                <div class="bg-primary/10 p-3 rounded-lg mr-4">
-                  <Icon name="heroicons:map-pin" class="w-6 h-6 text-accent" />
-                </div>
-                <div>
-                  <h4 class="font-bold text-primary">Our Location</h4>
-                  <p class="text-neutral">Dist-Darjeeling, West Bengal, India</p>
-                </div>
-              </div>
-              
-              <div class="flex items-center">
-                <div class="bg-primary/10 p-3 rounded-lg mr-4">
-                  <Icon name="heroicons:phone" class="w-6 h-6 text-accent" />
-                </div>
-                <div>
-                  <h4 class="font-bold text-primary">Call Us</h4>
-                  <p class="text-neutral">+91 98XXXXXXXX</p>
-                </div>
-              </div>
-
-              <div class="flex items-center">
-                <div class="bg-primary/10 p-3 rounded-lg mr-4">
-                  <Icon name="heroicons:envelope" class="w-6 h-6 text-accent" />
-                </div>
-                <div>
-                  <h4 class="font-bold text-primary">Email Us</h4>
-                  <p class="text-neutral">thapaconstruction2024@gmail.com</p>
-                </div>
-              </div>
-
-              <div class="flex items-center">
-                <div class="bg-primary/10 p-3 rounded-lg mr-4">
-                  <Icon name="heroicons:clock" class="w-6 h-6 text-accent" />
-                </div>
-                <div>
-                  <h4 class="font-bold text-primary">Working Hours</h4>
-                  <p class="text-neutral">Mon-Sat: 9:00 AM - 6:00 PM</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="lg:w-1/2">
-            <div class="bg-white p-8 rounded-lg shadow-lg">
-              <h3 class="text-2xl font-bold mb-6 text-primary">Send Us a Message</h3>
-              <ContactForm />
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
   </div>
 </template>
 
 <script setup lang="ts">
-import SliderHero from '~/components/SliderHero.vue'
-import ContactForm from '~/components/ContactForm.vue'
-import { computed } from 'vue'
-import { storeToRefs } from 'pinia'
-import { useProjectsStore } from '~/stores/projects'
+/**
+ * Home Page - Thapa Construction
+ * 
+ * This is the landing page showcasing:
+ * - Hero slider with main company messaging
+ * - About section with company overview and key features
+ * - Client testimonials for social proof
+ * 
+ * For detailed information, users can navigate to:
+ * - /about - Full company story, vision, mission, and values
+ * - /services - Complete services catalog
+ * - /projects - Portfolio of completed projects
+ * - /contact - Contact form and company information
+ */
 
+// SEO Configuration
 useHead({
   title: 'Thapa Construction - Premier Construction Services in Darjeeling',
   meta: [
-      { 
-        name: 'description', 
-        content: 'Thapa Construction offers professional construction services in Darjeeling, West Bengal including residential, commercial, renovation, and architectural design.' 
-      }
-    ]
-  });
-  const projectsStore = useProjectsStore()
-  const { allProjects } = storeToRefs(projectsStore)
-
-  /**
-   * Maps and sanitizes raw project data to the ProjectCard prop structure.
-   * @param {any[]} rawProjects - Raw projects array from the store.
-   * @returns {Array<{title: string, description: string, category: string, location: string, image: string, link: string}>}
-   */
-  function mapProjectsForCard(rawProjects: any[]): Array<{title: string, description: string, category: string, location: string, image: string, link: string}> {
-    if (!Array.isArray(rawProjects)) {
-      // eslint-disable-next-line no-console
-      console.error('Projects data is not an array')
-      return []
+    { 
+      name: 'description', 
+      content: 'Thapa Construction - Excellence in construction since 2024. We deliver high-quality construction services in Darjeeling and Jalpiguri districts with a commitment to quality, reliability, and client satisfaction.' 
     }
-    // Defensive: Only map valid projects, sanitize fields
-    return rawProjects.slice(0, 3).map((project, idx) => ({
-      title: String(project.title ?? `Project ${idx + 1}`),
-      description: String(project.description ?? ''),
-      category: String(project.category ?? ''),
-      location: String(project.location ?? ''),
-      image: String(project.image ?? '/images/projects/default.jpg'),
-      link: project.id ? `/projects/${project.id}` : '#'
-    }))
-  }
+  ]
+});
 
-  // --- Computed: Only show up to 3 projects, hide section if none ---
-  const featuredProjects = computed(() => mapProjectsForCard(allProjects.value))
-
-  // --- Logging for debugging/monitoring ---
-  if (featuredProjects.value.length === 0) {
-    // eslint-disable-next-line no-console
-    console.warn('No projects available to display in Featured Projects section.')
-  }
-
-// Sample data - would typically come from an API or CMS
-const services = [
-  {
-    title: 'General Construction',
-    description: 'Full-service construction solutions for both residential and commercial projects, built to the highest standards.',
-    image: '/images/services/general-construction.jpg',
-    icon: 'heroicons:building-office-2',
-    link: '/services#general'
-  },
-  {
-    title: 'Residential & Commercial',
-    description: 'Custom home building and commercial construction services tailored to meet your specific needs and vision.',
-    image: '/images/services/residential-commercial.jpg',
-    icon: 'heroicons:home',
-    link: '/services#residential'
-  },
-  {
-    title: 'Renovation & Remodeling',
-    description: 'Transform your existing space with our comprehensive renovation and remodeling services.',
-    image: '/images/services/renovation-remodeling.jpg',
-    icon: 'heroicons:wrench-screwdriver',
-    link: '/services#renovation'
-  }
-];
-
+/**
+ * Client Testimonials Data
+ * 
+ * Hardcoded testimonials showcasing client satisfaction and social proof.
+ * Each testimonial includes client name, role, testimonial content, and image.
+ * 
+ * @type {Array<{name: string, role: string, content: string, image: string}>}
+ */
 const testimonials = [
   {
     name: 'Rajesh Kumar',
