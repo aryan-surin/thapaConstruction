@@ -145,37 +145,7 @@
     </section> -->
 
     <!-- FAQs Section -->
-    <section class="py-20">
-      <div class="container-custom">
-        <div class="text-center max-w-3xl mx-auto mb-16">
-          <h2 class="section-title mx-auto after:mx-auto">Frequently Asked Questions</h2>
-          <p class="text-neutral">
-            Find answers to common questions about our construction services below.
-          </p>
-        </div>
-
-        <div class="max-w-4xl mx-auto">
-          <div v-for="(faq, index) in faqs" :key="index" class="mb-4 border border-neutral/10 rounded-lg overflow-hidden">
-            <button 
-              class="w-full px-6 py-4 bg-white text-left flex justify-between items-center text-primary font-medium hover:bg-secondary transition-colors duration-300"
-              @click="toggleFAQ(index)"
-            >
-              {{ faq.question }}
-              <Icon 
-                :name="activeFAQ === index ? 'heroicons:chevron-up' : 'heroicons:chevron-down'" 
-                class="w-5 h-5 transition-transform duration-300"
-              />
-            </button>
-            <div 
-              v-show="activeFAQ === index"
-              class="px-6 py-4 bg-white border-t border-neutral/10 text-neutral"
-            >
-              {{ faq.answer }}
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+    <FAQSection :faqs="allFAQs" background-class="bg-white" />
 
     <!-- CTA -->
     <section class="py-20 bg-primary text-white relative overflow-hidden">
@@ -202,7 +172,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { allFAQs } from '~/data/faqs';
 
 // SEO
 useHead({
@@ -214,51 +184,14 @@ useHead({
     }
   ]
 });
+
+/**
+ * Handles WhatsApp link click event
+ * Logs the interaction for monitoring purposes
+ */
 const handleWhatsAppClick = (): void => {
   // Logging for debugging/monitoring
   // eslint-disable-next-line no-console
   console.log('WhatsApp chat link clicked');
-};
-/**
- * Frequently Asked Questions data
- */
-const faqs = ref([
-  {
-    question: 'What areas do you serve?',
-    answer: 'We primarily serve Darjeeling district and surrounding areas in West Bengal, including Kalimpong, Kurseong, and Siliguri. For larger projects, we may consider locations throughout North Bengal.'
-  },
-  {
-    question: 'How do I get a quote for my construction project?',
-    answer: 'You can request a quote by filling out our contact form, calling our office directly, or sending us an email with project details. We typically respond within 24-48 hours to schedule a consultation.'
-  },
-  {
-    question: 'What types of projects do you handle?',
-    answer: 'We handle a wide range of construction projects including residential homes, commercial buildings, renovations, remodeling, architectural design, and interior design. No project is too small or too large for our team.'
-  },
-  {
-    question: 'How long does a typical construction project take?',
-    answer: 'Project timelines vary significantly based on scope, complexity, and size. A small renovation might take a few weeks, while a custom home could take 6-12 months. During consultation, we provide a detailed timeline specific to your project.'
-  },
-  {
-    question: 'Do you provide warranties for your construction work?',
-    answer: 'Yes, we provide warranties for our construction work. The specific terms and duration vary by project type, but typically include a 1-year workmanship warranty and pass-through warranties from material manufacturers.'
-  },
-  {
-    question: 'Can you help with obtaining construction permits?',
-    answer: 'Yes, we assist with the permit application process as part of our services. Our team is familiar with local building codes and regulations in Darjeeling and surrounding areas.'
-  }
-]);
-
-/**
- * Tracks the currently active (expanded) FAQ
- */
-const activeFAQ = ref<number | null>(null);
-
-/**
- * Toggles the visibility of FAQ answers
- * @param index - The index of the FAQ to toggle
- */
-const toggleFAQ = (index: number) => {
-  activeFAQ.value = activeFAQ.value === index ? null : index;
 };
 </script>

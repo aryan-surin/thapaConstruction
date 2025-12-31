@@ -77,6 +77,17 @@
         </div>
       </div>
     </section>
+
+    <!-- FAQs Section -->
+    <FAQSection 
+      :faqs="limitedFAQs" 
+      title="Got Questions? We've Got Answers"
+      description="Find quick answers to the most common questions about our construction services."
+      background-class="bg-white"
+      :show-more-link="true"
+      more-link="/contact"
+      more-link-text="View All FAQs & Contact Us"
+    />
   </div>
 </template>
 
@@ -88,6 +99,7 @@
  * - Hero slider with main company messaging
  * - About section with company overview and key features
  * - Client testimonials for social proof
+ * - FAQs section for quick answers
  * 
  * For detailed information, users can navigate to:
  * - /about - Full company story, vision, mission, and values
@@ -95,6 +107,8 @@
  * - /projects - Portfolio of completed projects
  * - /contact - Contact form and company information
  */
+
+import { allFAQs, getLimitedFAQs } from '~/data/faqs';
 
 // SEO Configuration
 useHead({
@@ -135,4 +149,14 @@ const testimonials = [
     image: '/images/testimonials/person3.jpg'
   }
 ];
+
+/**
+ * Limited FAQs for Home Page
+ * 
+ * Displays only the first 4 most important FAQs on the home page.
+ * Users can view all FAQs by clicking "View All FAQs & Contact Us" link.
+ * 
+ * @type {FAQ[]}
+ */
+const limitedFAQs = getLimitedFAQs(4);
 </script>
