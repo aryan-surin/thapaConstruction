@@ -147,6 +147,17 @@
     <!-- FAQs Section -->
     <FAQSection :faqs="allFAQs" background-class="bg-white" />
 
+    <!-- Google Reviews Section -->
+    <GoogleReviewsSection 
+      title="What Our Clients Say"
+      description="Read reviews from our satisfied clients on Google. Your trust drives our commitment to excellence."
+      background-class="bg-secondary"
+      :show-rating="true"
+      :show-cta="true"
+      cta-text="Share Your Experience"
+      :min-rating="1"
+    />
+
     <!-- CTA -->
     <section class="py-20 bg-primary text-white relative overflow-hidden">
       <div class="absolute inset-0 bg-cover bg-center opacity-20" style="background-image: url('/images/cta-bg.jpg')"></div>

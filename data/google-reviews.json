@@ -1,0 +1,19 @@
+{
+  "result": {
+    "name": "Thapa Construction",
+    "rating": 5,
+    "user_ratings_total": 1,
+    "reviews": [
+      {
+        "author_name": "Aryan",
+        "author_url": "",
+        "profile_photo_url": "https://lh3.googleusercontent.com/a/default-user=s128-c0x00000000-cc-rp-mo",
+        "rating": 5,
+        "relative_time_description": "2 days ago",
+        "text": "Excellent work! Thapa Construction delivered exceptional quality and professionalism throughout our project.",
+        "time": 1736006400,
+        "language": "en"
+      }
+    ]
+  }
+}

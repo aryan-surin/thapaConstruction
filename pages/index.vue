@@ -88,6 +88,18 @@
       more-link="/contact"
       more-link-text="View All FAQs & Contact Us"
     />
+
+    <!-- Google Reviews Section -->
+    <GoogleReviewsSection 
+      :limit="4"
+      title="Verified Google Reviews"
+      description="Real feedback from our valued clients. See why customers trust Thapa Construction for their projects."
+      background-class="bg-secondary"
+      :show-rating="true"
+      :show-cta="true"
+      cta-text="Leave Us a Review"
+      :min-rating="1"
+    />
   </div>
 </template>
 
