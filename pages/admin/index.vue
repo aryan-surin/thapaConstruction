@@ -95,6 +95,17 @@
             </div>
           </NuxtLink>
 
+          <NuxtLink
+            to="/admin/gallery"
+            class="flex items-center p-4 border-2 border-neutral/20 rounded-lg hover:border-accent hover:bg-accent/5 transition-all group"
+          >
+            <Icon name="heroicons:photo" class="w-8 h-8 text-steel-blue group-hover:text-accent mr-3" />
+            <div>
+              <p class="font-semibold text-primary">Manage Gallery</p>
+              <p class="text-sm text-neutral">Curate project & standalone images</p>
+            </div>
+          </NuxtLink>
+
           <button
             @click="refreshData"
             :disabled="loading"
