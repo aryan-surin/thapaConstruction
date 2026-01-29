@@ -196,7 +196,7 @@
             />
             <button
               @click="handleStandaloneUpload"
-              :disabled="!standaloneFile || standaloneCapReached || totalCapReached"
+              :disabled="!standaloneFile || !standaloneAltText || standaloneCapReached || totalCapReached"
               class="w-full px-3 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition disabled:opacity-50"
             >
               Upload Standalone
@@ -362,6 +362,29 @@ const totalCapReached = computed<boolean>(() => galleryStore.totalLimitReached)
 const standaloneCapReached = computed<boolean>(() => galleryStore.standaloneLimitReached)
 
 const standaloneFileName = computed<string>(() => standaloneFile.value?.name || '')
+
+const handleStandaloneFile = (event: Event): void => {
+  const input = event.target as HTMLInputElement
+  const file = input.files?.[0]
+  
+  if (!file) {
+    standaloneFile.value = null
+    standalonePreview.value = ''
+    return
+  }
+  
+  // Validate file type
+  if (!file.type.startsWith('image/')) {
+    errorMessage.value = 'Please select a valid image file.'
+    standaloneFile.value = null
+    standalonePreview.value = ''
+    return
+  }
+  
+  standaloneFile.value = file
+  standalonePreview.value = URL.createObjectURL(file)
+  errorMessage.value = ''
+}
 
 const refreshData = async (): Promise<void> => {
   successMessage.value = ''
