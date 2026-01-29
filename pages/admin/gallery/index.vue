@@ -119,19 +119,19 @@
               </div>
               <div class="space-y-2">
                 <input
-                  v-model="projectAltText"
+                  v-model="projectImageForms[candidate.url].altText"
                   type="text"
                   class="w-full border border-neutral/30 rounded px-3 py-2 text-sm focus:ring-accent focus:border-accent"
                   placeholder="Alt text (required)"
                 />
                 <input
-                  v-model="projectCaption"
+                  v-model="projectImageForms[candidate.url].caption"
                   type="text"
                   class="w-full border border-neutral/30 rounded px-3 py-2 text-sm focus:ring-accent focus:border-accent"
                   placeholder="Caption (optional)"
                 />
                 <input
-                  v-model.number="projectSortOrder"
+                  v-model.number="projectImageForms[candidate.url].sortOrder"
                   type="number"
                   class="w-full border border-neutral/30 rounded px-3 py-2 text-sm focus:ring-accent focus:border-accent"
                   placeholder="Sort order (default 0)"
@@ -289,9 +289,13 @@ const projectsStore = useProjectsStore()
 const galleryStore = useGalleryStore()
 
 const selectedProjectId = ref<string>('all')
-const projectAltText = ref<string>('')
-const projectCaption = ref<string>('')
-const projectSortOrder = ref<number>(0)
+
+// Per-image form state (keyed by image URL)
+const projectImageForms = reactive<Record<string, {
+  altText: string
+  caption: string
+  sortOrder: number
+}>>({})
 
 const standaloneFile = ref<File | null>(null)
 const standalonePreview = ref<string>('')
@@ -336,8 +340,22 @@ const projectCandidates = computed<ProjectImageCandidate[]>(() => {
 })
 
 const filteredCandidates = computed<ProjectImageCandidate[]>(() => {
-  if (selectedProjectId.value === 'all') return projectCandidates.value
-  return projectCandidates.value.filter((c: ProjectImageCandidate) => c.projectId === selectedProjectId.value)
+  const candidates = selectedProjectId.value === 'all' 
+    ? projectCandidates.value 
+    : projectCandidates.value.filter((c: ProjectImageCandidate) => c.projectId === selectedProjectId.value)
+  
+  // Initialize form state for all visible candidates
+  candidates.forEach(candidate => {
+    if (!projectImageForms[candidate.url]) {
+      projectImageForms[candidate.url] = {
+        altText: '',
+        caption: '',
+        sortOrder: 0
+      }
+    }
+  })
+  
+  return candidates
 })
 
 const totalCapReached = computed<boolean>(() => galleryStore.totalLimitReached)
@@ -356,14 +374,15 @@ const isInGallery = (url: string): boolean => {
 }
 
 const disableProjectAdd = (url: string): boolean => {
-  return totalCapReached.value || isInGallery(url) || !projectAltText.value
+  return totalCapReached.value || isInGallery(url) || !projectImageForms[url]?.altText
 }
 
 const handleAddProjectImage = async (candidate: ProjectImageCandidate): Promise<void> => {
   errorMessage.value = ''
   successMessage.value = ''
 
-  if (!projectAltText.value) {
+  const form = projectImageForms[candidate.url]
+  if (!form || !form.altText) {
     errorMessage.value = 'Alt text is required for accessibility.'
     return
   }
@@ -371,9 +390,9 @@ const handleAddProjectImage = async (candidate: ProjectImageCandidate): Promise<
   const result = await galleryStore.addProjectImage({
     imageUrl: candidate.url,
     projectId: candidate.projectId,
-    altText: projectAltText.value,
-    caption: projectCaption.value,
-    sortOrder: projectSortOrder.value
+    altText: form.altText,
+    caption: form.caption,
+    sortOrder: form.sortOrder
   })
 
   if (!result.success) {
@@ -382,17 +401,11 @@ const handleAddProjectImage = async (candidate: ProjectImageCandidate): Promise<
   }
 
   successMessage.value = 'Project image added to gallery.'
-  projectCaption.value = ''
-  projectAltText.value = ''
-  projectSortOrder.value = 0
-}
-
-const handleStandaloneFile = (event: Event): void => {
-  const target = event.target as HTMLInputElement
-  const file = target.files?.[0]
-  if (file) {
-    standaloneFile.value = file
-    standalonePreview.value = URL.createObjectURL(file)
+  // Reset form for this card
+  projectImageForms[candidate.url] = {
+    altText: '',
+    caption: '',
+    sortOrder: 0
   }
 }
 
