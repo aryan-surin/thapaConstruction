@@ -60,14 +60,15 @@
           <!-- Responsive Masonry-style Grid -->
           <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             <div
-              v-for="item in galleryStore.allItems"
+              v-for="(item, index) in galleryStore.allItems"
               :key="item.id"
-              class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 bg-white"
+              class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 bg-white cursor-pointer"
+              @click="openPreview(index)"
             >
               <!-- Image Container with Aspect Ratio -->
               <div class="relative aspect-[4/3] overflow-hidden">
                 <img
-                  :src="item.image_url"
+                  :src="getImageUrl(item.image_url)"
                   :alt="item.alt_text"
                   loading="lazy"
                   class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
@@ -94,6 +95,72 @@
       </div>
     </section>
 
+    <!-- Image Preview Modal -->
+    <Teleport to="body">
+      <Transition name="modal-fade">
+        <div
+          v-if="previewIndex !== null"
+          class="fixed inset-0 z-50 flex items-center justify-center bg-black/95 backdrop-blur-sm"
+          @click.self="closePreview"
+        >
+          <!-- Close Button -->
+          <button
+            @click="closePreview"
+            class="absolute top-4 right-4 md:top-8 md:right-8 z-50 w-12 h-12 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 text-white transition-all duration-300 backdrop-blur-md"
+            aria-label="Close preview"
+          >
+            <Icon name="heroicons:x-mark" class="w-6 h-6" />
+          </button>
+
+          <!-- Image Counter -->
+          <div class="absolute top-4 left-4 md:top-8 md:left-8 z-50 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md text-white text-sm font-medium">
+            {{ previewIndex + 1 }} / {{ galleryStore.allItems.length }}
+          </div>
+
+          <!-- Previous Button -->
+          <button
+            v-if="previewIndex > 0"
+            @click="previousImage"
+            class="absolute left-4 top-1/2 -translate-y-1/2 z-50 w-12 h-12 md:w-14 md:h-14 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 text-white transition-all duration-300 backdrop-blur-md hover:scale-110"
+            aria-label="Previous image"
+          >
+            <Icon name="heroicons:chevron-left" class="w-6 h-6 md:w-8 md:h-8" />
+          </button>
+
+          <!-- Next Button -->
+          <button
+            v-if="previewIndex < galleryStore.allItems.length - 1"
+            @click="nextImage"
+            class="absolute right-4 top-1/2 -translate-y-1/2 z-50 w-12 h-12 md:w-14 md:h-14 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 text-white transition-all duration-300 backdrop-blur-md hover:scale-110"
+            aria-label="Next image"
+          >
+            <Icon name="heroicons:chevron-right" class="w-6 h-6 md:w-8 md:h-8" />
+          </button>
+
+          <!-- Image Container -->
+          <div class="w-full h-full flex flex-col items-center justify-center p-4 md:p-16">
+            <Transition name="image-fade" mode="out-in">
+              <div v-if="currentPreviewItem" :key="previewIndex" class="max-w-7xl max-h-full flex flex-col items-center">
+                <!-- Image -->
+                <img
+                  :src="getImageUrl(currentPreviewItem.image_url)"
+                  :alt="currentPreviewItem.alt_text"
+                  class="max-w-full max-h-[70vh] md:max-h-[75vh] object-contain rounded-lg shadow-2xl"
+                  @error="handleImageError"
+                />
+                
+                <!-- Caption Area -->
+                <div v-if="currentPreviewItem.alt_text || currentPreviewItem.caption" class="mt-6 max-w-3xl text-center px-4">
+                  <h3 class="text-white text-lg md:text-xl font-semibold mb-2">{{ currentPreviewItem.alt_text }}</h3>
+                  <p v-if="currentPreviewItem.caption" class="text-white/80 text-sm md:text-base">{{ currentPreviewItem.caption }}</p>
+                </div>
+              </div>
+            </Transition>
+          </div>
+        </div>
+      </Transition>
+    </Teleport>
+
     <!-- CTA Section -->
     <section class="py-20 bg-primary text-white relative overflow-hidden">
       <div class="absolute inset-0 bg-cover bg-center opacity-20" style="background-image: url('/images/cta-bg.jpg')"></div>
@@ -116,14 +183,13 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted } from 'vue'
 import { useGalleryStore } from '~/stores/gallery'
 
 /**
  * Public Gallery Page
  * 
  * Customer-facing gallery displaying curated images from projects and standalone uploads.
- * Features lazy loading, responsive grid, and performance optimizations.
+ * Features lazy loading, responsive grid, image preview modal with navigation.
  * 
  * Data source: gallery_items table via Supabase
  * Ordering: sort_order ASC, created_at ASC (enforced in store)
@@ -132,11 +198,102 @@ import { useGalleryStore } from '~/stores/gallery'
 
 const galleryStore = useGalleryStore()
 
+// Image preview state
+const previewIndex = ref<number | null>(null)
+
+/**
+ * Get current preview item
+ */
+const currentPreviewItem = computed(() => {
+  if (previewIndex.value === null) return null
+  return galleryStore.allItems[previewIndex.value]
+})
+
+/**
+ * Normalize image URLs (handles relative paths and absolute Supabase URLs)
+ */
+const getImageUrl = (url: string): string => {
+  if (!url) return ''
+  // If already absolute URL, return as-is
+  if (url.startsWith('http://') || url.startsWith('https://')) {
+    return url
+  }
+  // If relative path, ensure it's properly formatted
+  return url.startsWith('/') ? url : `/${url}`
+}
+
+/**
+ * Open image preview at specific index
+ */
+const openPreview = (index: number): void => {
+  previewIndex.value = index
+  // Prevent body scroll when modal is open
+  document.body.style.overflow = 'hidden'
+}
+
+/**
+ * Close image preview
+ */
+const closePreview = (): void => {
+  previewIndex.value = null
+  // Restore body scroll
+  document.body.style.overflow = ''
+}
+
+/**
+ * Navigate to previous image
+ */
+const previousImage = (): void => {
+  if (previewIndex.value !== null && previewIndex.value > 0) {
+    previewIndex.value--
+  }
+}
+
+/**
+ * Navigate to next image
+ */
+const nextImage = (): void => {
+  if (previewIndex.value !== null && previewIndex.value < galleryStore.allItems.length - 1) {
+    previewIndex.value++
+  }
+}
+
+/**
+ * Handle keyboard navigation
+ */
+const handleKeydown = (event: KeyboardEvent): void => {
+  if (previewIndex.value === null) return
+  
+  switch (event.key) {
+    case 'Escape':
+      closePreview()
+      break
+    case 'ArrowLeft':
+      previousImage()
+      break
+    case 'ArrowRight':
+      nextImage()
+      break
+  }
+}
+
 /**
  * Fetch gallery items on component mount
  */
 onMounted(async () => {
   await galleryStore.fetchGalleryItems()
+  // Add keyboard event listener
+  window.addEventListener('keydown', handleKeydown)
+})
+
+/**
+ * Cleanup on component unmount
+ */
+onUnmounted(() => {
+  // Remove keyboard event listener
+  window.removeEventListener('keydown', handleKeydown)
+  // Restore body scroll if modal was open
+  document.body.style.overflow = ''
 })
 
 /**
@@ -207,5 +364,32 @@ img {
   line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
+}
+
+/* Modal transitions */
+.modal-fade-enter-active,
+.modal-fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+
+.modal-fade-enter-from,
+.modal-fade-leave-to {
+  opacity: 0;
+}
+
+/* Image transitions */
+.image-fade-enter-active,
+.image-fade-leave-active {
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.image-fade-enter-from {
+  opacity: 0;
+  transform: scale(0.95);
+}
+
+.image-fade-leave-to {
+  opacity: 0;
+  transform: scale(1.05);
 }
 </style>

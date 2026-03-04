@@ -108,7 +108,7 @@
             :key="candidate.url"
             class="border rounded-lg p-3 flex space-x-3 hover:border-accent transition"
           >
-            <img :src="candidate.url" :alt="candidate.label" class="w-20 h-20 object-cover rounded" />
+            <img :src="getImageUrl(candidate.url)" :alt="candidate.label" class="w-20 h-20 object-cover rounded" />
             <div class="flex-1 space-y-2">
               <div class="flex items-center justify-between">
                 <div>
@@ -227,7 +227,7 @@
             class="border rounded-lg p-3 space-y-3"
           >
             <div class="relative">
-              <img :src="item.image_url" :alt="item.alt_text" class="w-full h-40 object-cover rounded" />
+              <img :src="getImageUrl(item.image_url)" :alt="item.alt_text" class="w-full h-40 object-cover rounded" />
               <span
                 class="absolute top-2 left-2 text-xs px-2 py-1 rounded"
                 :class="item.source_type === 'project' ? 'bg-blue-100 text-blue-800' : 'bg-purple-100 text-purple-800'"
@@ -362,6 +362,17 @@ const totalCapReached = computed<boolean>(() => galleryStore.totalLimitReached)
 const standaloneCapReached = computed<boolean>(() => galleryStore.standaloneLimitReached)
 
 const standaloneFileName = computed<string>(() => standaloneFile.value?.name || '')
+
+// Normalize image URLs (handles relative paths and absolute Supabase URLs)
+const getImageUrl = (url: string): string => {
+  if (!url) return ''
+  // If already absolute URL, return as-is
+  if (url.startsWith('http://') || url.startsWith('https://')) {
+    return url
+  }
+  // If relative path, ensure it's properly formatted
+  return url.startsWith('/') ? url : `/${url}`
+}
 
 const handleStandaloneFile = (event: Event): void => {
   const input = event.target as HTMLInputElement
