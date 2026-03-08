@@ -233,7 +233,7 @@ const reviewsStore = useReviewsStore();
  * Google Business Profile URL
  * Using the share link provided
  */
-const googleBusinessUrl = 'https://g.page/r/YOUR_PLACE_ID/review'; // TODO: Update with actual review URL
+const googleBusinessUrl = 'https://g.page/r/CTBQsG28skXGEAI/review'; // TODO: Update with actual review URL
 
 /**
  * Fetch reviews on component mount
