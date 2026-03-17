@@ -106,6 +106,17 @@
             </div>
           </NuxtLink>
 
+          <NuxtLink
+            to="/admin/blog"
+            class="flex items-center p-4 border-2 border-neutral/20 rounded-lg hover:border-accent hover:bg-accent/5 transition-all group"
+          >
+            <Icon name="heroicons:document-text" class="w-8 h-8 text-steel-blue group-hover:text-accent mr-3" />
+            <div>
+              <p class="font-semibold text-primary">Manage Blogs</p>
+              <p class="text-sm text-neutral">Create & edit blog posts</p>
+            </div>
+          </NuxtLink>
+
           <button
             @click="refreshData"
             :disabled="loading"
