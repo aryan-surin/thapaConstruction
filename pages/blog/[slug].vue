@@ -79,8 +79,8 @@
               {{ blog.description }}
             </p>
 
-            <!-- Main Content (HTML) -->
-            <div v-html="blog.content" class="blog-content"></div>
+            <!-- Main Content (HTML) - Sanitized for XSS protection -->
+            <div v-html="sanitizedContent" class="blog-content"></div>
 
             <!-- Updated Date (if exists) -->
             <div v-if="blog.updatedAt" class="mt-12 pt-6 border-t border-neutral/10 text-sm text-neutral/70 italic">
@@ -261,6 +261,7 @@
 
 import { useBlogStore } from '~/stores/blog';
 import type { BlogPost } from '~/types/blog';
+import { sanitizeHtml } from '~/utils/sanitize';
 
 const route = useRoute();
 const blogStore = useBlogStore();
@@ -271,6 +272,15 @@ const slug = route.params.slug as string;
 
 // Get blog post
 const blog = computed(() => blogStore.getBlogBySlug(slug));
+
+/**
+ * Sanitize blog content to prevent XSS attacks
+ * Content is sanitized on the client side before rendering
+ */
+const sanitizedContent = computed(() => {
+  if (!blog.value?.content) return '';
+  return sanitizeHtml(blog.value.content);
+});
 
 // Get related blogs (same category, excluding current)
 const relatedBlogs = computed(() => {

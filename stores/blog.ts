@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia';
 import type { BlogPost, BlogCategory, BlogFormInput, BlogFilterOptions } from '~/types/blog';
 import { sampleBlogs, BLOG_CATEGORIES, generateSlug, calculateReadingTime } from '~/data/blogs';
+import { sanitizeHtml, sanitizePlainText, validateHtmlSafety } from '~/utils/sanitize';
 
 /**
  * Blog Store - Manages blog posts state
@@ -166,11 +167,44 @@ export const useBlogStore = defineStore('blog', {
         this.loading = true;
         this.error = null;
 
+        // Validate input data
+        if (!formData.title?.trim()) {
+          this.error = 'Title is required';
+          return null;
+        }
+
+        if (!formData.description?.trim()) {
+          this.error = 'Description is required';
+          return null;
+        }
+
+        if (!formData.content?.trim()) {
+          this.error = 'Content is required';
+          return null;
+        }
+
+        if (!formData.category) {
+          this.error = 'Category is required';
+          return null;
+        }
+
+        // Validate HTML safety
+        const contentSafety = validateHtmlSafety(formData.content);
+        if (!contentSafety.isSafe) {
+          this.error = `Content contains potentially dangerous HTML: ${contentSafety.issues.join(', ')}`;
+          console.warn('Blog content safety issues:', contentSafety.issues);
+          // Continue anyway but sanitize the content
+        }
+
         // Generate unique ID
         const id = String(this.blogs.length + 1);
         
-        // Generate slug from title
-        const slug = generateSlug(formData.title);
+        // Sanitize text inputs
+        const sanitizedTitle = sanitizePlainText(formData.title.trim());
+        const sanitizedDescription = sanitizePlainText(formData.description.trim());
+        
+        // Generate slug from sanitized title
+        const slug = generateSlug(sanitizedTitle);
         
         // Check if slug already exists
         if (this.blogs.some(blog => blog.slug === slug)) {
@@ -178,17 +212,20 @@ export const useBlogStore = defineStore('blog', {
           return null;
         }
 
-        // Calculate reading time
-        const readingTime = calculateReadingTime(formData.content);
+        // Sanitize HTML content to prevent XSS
+        const sanitizedContent = sanitizeHtml(formData.content);
 
-        // Create new blog post
+        // Calculate reading time from sanitized content
+        const readingTime = calculateReadingTime(sanitizedContent);
+
+        // Create new blog post with sanitized data
         const newBlog: BlogPost = {
           id,
           slug,
-          title: formData.title,
-          description: formData.description,
-          coverImage: formData.coverImage,
-          content: formData.content,
+          title: sanitizedTitle,
+          description: sanitizedDescription,
+          coverImage: formData.coverImage, // Already validated as URL or base64
+          content: sanitizedContent,
           category: formData.category,
           author: 'Thapa Construction',
           publishedAt: new Date(),
@@ -230,10 +267,47 @@ export const useBlogStore = defineStore('blog', {
 
         const existingBlog = this.blogs[index];
 
+        // Validate and sanitize inputs if provided
+        let sanitizedTitle = existingBlog.title;
+        let sanitizedDescription = existingBlog.description;
+        let sanitizedContent = existingBlog.content;
+        
+        if (formData.title) {
+          if (!formData.title.trim()) {
+            this.error = 'Title cannot be empty';
+            return null;
+          }
+          sanitizedTitle = sanitizePlainText(formData.title.trim());
+        }
+
+        if (formData.description) {
+          if (!formData.description.trim()) {
+            this.error = 'Description cannot be empty';
+            return null;
+          }
+          sanitizedDescription = sanitizePlainText(formData.description.trim());
+        }
+
+        if (formData.content) {
+          if (!formData.content.trim()) {
+            this.error = 'Content cannot be empty';
+            return null;
+          }
+          
+          // Validate HTML safety
+          const contentSafety = validateHtmlSafety(formData.content);
+          if (!contentSafety.isSafe) {
+            console.warn('Blog content safety issues:', contentSafety.issues);
+            // Continue anyway but sanitize the content
+          }
+          
+          sanitizedContent = sanitizeHtml(formData.content);
+        }
+
         // If title changed, regenerate slug
         let slug = existingBlog.slug;
-        if (formData.title && formData.title !== existingBlog.title) {
-          slug = generateSlug(formData.title);
+        if (sanitizedTitle !== existingBlog.title) {
+          slug = generateSlug(sanitizedTitle);
           
           // Check if new slug conflicts with another blog
           const conflict = this.blogs.find(blog => blog.slug === slug && blog.id !== id);
@@ -245,16 +319,21 @@ export const useBlogStore = defineStore('blog', {
 
         // Recalculate reading time if content changed
         let readingTime = existingBlog.readingTime;
-        if (formData.content && formData.content !== existingBlog.content) {
-          readingTime = calculateReadingTime(formData.content);
+        if (sanitizedContent !== existingBlog.content) {
+          readingTime = calculateReadingTime(sanitizedContent);
         }
 
-        // Update blog post
+        // Update blog post with sanitized data
         const updatedBlog: BlogPost = {
           ...existingBlog,
-          ...formData,
+          title: sanitizedTitle,
+          description: sanitizedDescription,
+          content: sanitizedContent,
           slug,
           readingTime,
+          category: formData.category || existingBlog.category,
+          coverImage: formData.coverImage || existingBlog.coverImage,
+          featured: formData.featured !== undefined ? formData.featured : existingBlog.featured,
           updatedAt: new Date()
         };
 
