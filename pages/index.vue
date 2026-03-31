@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- Hero Section -->
-    <SliderHero />
+    <VideoHero />
 
     <!-- About Section -->
     <section class="py-20 bg-secondary">
