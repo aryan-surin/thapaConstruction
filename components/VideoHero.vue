@@ -26,7 +26,7 @@
     <!-- Fallback Image (for mobile and video error) -->
     <div 
       class="absolute inset-0 w-full h-full"
-      :class="{ 'md:hidden': shouldShowVideo && !videoError }"
+      :class="{ 'md:hidden': videoIsPlaying }"
     >
       <img 
         src="/images/hero-video-fallback.jpg" 
@@ -168,6 +168,7 @@ const videoElement = ref<HTMLVideoElement | null>(null);
 const mounted = ref(false);
 const videoError = ref(false);
 const shouldShowVideo = ref(false);
+const videoIsPlaying = ref(false); // Track if video is actually playing
 
 // Video source paths (using computed to avoid Vite build-time resolution)
 const videoWebmSrc = computed(() => '/videos/construction-hero.webm');
@@ -205,7 +206,10 @@ const checkVideoSupport = (): boolean => {
  */
 const onVideoReady = (): void => {
   if (videoElement.value) {
-    videoElement.value.play().catch((error: Error) => {
+    videoElement.value.play().then(() => {
+      // Video successfully started playing - now hide fallback
+      videoIsPlaying.value = true;
+    }).catch((error: Error) => {
       console.warn('Video autoplay failed:', error);
       videoError.value = true;
     });
@@ -234,7 +238,9 @@ onMounted(() => {
   // Attempt to play video after mount
   if (shouldShowVideo.value && videoElement.value) {
     setTimeout(() => {
-      videoElement.value?.play().catch((error: Error) => {
+      videoElement.value?.play().then(() => {
+        videoIsPlaying.value = true;
+      }).catch((error: Error) => {
         console.warn('Video autoplay failed:', error);
         videoError.value = true;
       });
