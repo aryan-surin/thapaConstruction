@@ -22,8 +22,3 @@ logs
 .env
 .env.*
 !.env.example
-
-# Video assets (too large for git - add manually)
-public/videos/*.mp4
-public/videos/*.webm
-public/videos/*.mov

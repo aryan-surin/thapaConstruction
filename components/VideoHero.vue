@@ -1,9 +1,9 @@
 <template>
   <section class="relative w-full h-[calc(100vh-80px)] min-h-[600px] overflow-hidden">
-    <!-- Video Background - Hidden on mobile -->
+    <!-- Video Background - Visible on all devices -->
     <div 
       v-if="shouldShowVideo" 
-      class="absolute inset-0 w-full h-full hidden md:block"
+      class="absolute inset-0 w-full h-full"
     >
       <!-- WebM Source (preferred for performance) -->
       <video
@@ -23,10 +23,10 @@
       </video>
     </div>
 
-    <!-- Fallback Image (for mobile and video error) -->
+    <!-- Fallback Image (shown until video plays or on error) -->
     <div 
       class="absolute inset-0 w-full h-full"
-      :class="{ 'md:hidden': videoIsPlaying }"
+      :class="{ 'hidden': videoIsPlaying }"
     >
       <img 
         src="/images/hero-video-fallback.jpg" 
@@ -148,8 +148,8 @@
  * 
  * Features:
  * - Full-width video background with WebM/MP4 fallback
- * - Mobile-responsive (video disabled on screens < 768px)
- * - Fallback image for mobile and video errors
+ * - Mobile-responsive (video enabled on all screen sizes)
+ * - Fallback image for video errors
  * - Dark gradient overlay for content readability
  * - Left-aligned layout with clear CTAs
  * - Trust indicators with business stats
@@ -158,9 +158,10 @@
  * 
  * Performance Considerations:
  * - Video preload set to "none" to avoid blocking page load
- * - Conditional rendering prevents video download on mobile
+ * - Conditional rendering based on connection speed
  * - Error handling with automatic fallback to image
  * - Picture-in-picture disabled to reduce memory usage
+ * - Slow connection detection (2G/Save Data mode uses fallback)
  */
 
 // Refs
@@ -176,16 +177,11 @@ const videoMp4Src = computed(() => '/videos/construction-hero.mp4');
 
 /**
  * Check if device is likely to handle video well
- * Only show video on desktop (>=768px) and when not on slow connection
+ * Now enabled on all screen sizes, but respects slow connections
  */
 const checkVideoSupport = (): boolean => {
   // Check if running on client side
   if (typeof window === 'undefined') {
-    return false;
-  }
-
-  // Check screen size (desktop only)
-  if (window.innerWidth < 768) {
     return false;
   }
 
