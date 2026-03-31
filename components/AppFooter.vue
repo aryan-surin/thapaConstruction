@@ -72,6 +72,9 @@
         </div>
       </div>
 
+      <!-- Certifications Strip -->
+      <CertificationsStrip />
+
       <!-- Bottom Footer -->
       <div class="mt-12 pt-8 border-t border-white/10 text-center">
         <p class="text-secondary/70 text-sm">

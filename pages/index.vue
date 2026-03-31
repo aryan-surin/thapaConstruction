@@ -3,6 +3,9 @@
     <!-- Hero Section -->
     <VideoHero />
 
+    <!-- Certifications Section -->
+    <Certifications />
+
     <!-- About Section -->
     <section class="py-20 bg-secondary">
       <div class="container-custom">
